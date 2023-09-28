@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles/home.css">
+    <title>LIGHTNING MAB</title>
+    <style>
+        .relampago {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            animation: relampago-anim 4s linear infinite;
+        }
+
+        .relampago-flash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            animation: flash-anim 0.6s linear infinite;
+        }
+
+        @keyframes relampago-anim {
+            0% {
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+                box-shadow: 0 0 50px 20px #fff, 0 0 100px 40px #fff, 0 0 150px 60px #fff;
+            }
+
+            10%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes flash-anim {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            5%,
+            95% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="relampago">
+        <div class="relampago-flash"></div>
+    </div> -->
+    <div style="position: absolute;" class="retangulo">
+        <div class="textos">
+            <h2>LIGHTNING MAB</h2>
+            <h3>Bem vindo</h3>
+            <p>Aqui você terá a experiência de ver com exatidão a localidade da ocorrência de raios no estado do Pará
+            </p>
+        </div>
+<<<<<<< HEAD
+
+        <div class="retBotao">
+            <button class="botao"><a href="mapa.html">Ver mapa</a></button>
+            <button class="botao" id="verMapa"><a href="http://localhost:3002/mapa.html">Ver mapas</a></button>
+
+        </div>
+        <div class="tempo">
+            <button type="" id="tempestade">Tempestade</button>
+            <button type="" id="limpo">Céu Limpo</button>
+=======
+            
+        <div>
+            <button><a href="/public/mapa.html">Ver mapa</a></button>
+>>>>>>> 06032032cb778d57bd535eae124a56bea0c36e94
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('verMapa').addEventListener('click', function () {
+            // Faz uma solicitação POST para a rota "/iniciar-servidor" quando o botão for clicado.
+            fetch('/', {
+                method: 'GET'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Servidor iniciado com sucesso.');
+                        // Você pode adicionar código aqui para lidar com a resposta, se necessário.
+                    } else {
+                        console.error('Erro ao iniciar o servidor.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro de rede:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
