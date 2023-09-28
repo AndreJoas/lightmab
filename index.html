@@ -67,43 +67,19 @@
             <p>Aqui você terá a experiência de ver com exatidão a localidade da ocorrência de raios no estado do Pará
             </p>
         </div>
-<<<<<<< HEAD
+
 
         <div class="retBotao">
             <button class="botao"><a href="mapa.html">Ver mapa</a></button>
-            <button class="botao" id="verMapa"><a href="http://localhost:3002/mapa.html">Ver mapas</a></button>
-
         </div>
         <div class="tempo">
             <button type="" id="tempestade">Tempestade</button>
             <button type="" id="limpo">Céu Limpo</button>
-=======
-            
-        <div>
-            <button><a href="/public/mapa.html">Ver mapa</a></button>
->>>>>>> 06032032cb778d57bd535eae124a56bea0c36e94
-        </div>
+
+     
     </div>
 
-    <script>
-        document.getElementById('verMapa').addEventListener('click', function () {
-            // Faz uma solicitação POST para a rota "/iniciar-servidor" quando o botão for clicado.
-            fetch('/', {
-                method: 'GET'
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Servidor iniciado com sucesso.');
-                        // Você pode adicionar código aqui para lidar com a resposta, se necessário.
-                    } else {
-                        console.error('Erro ao iniciar o servidor.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro de rede:', error);
-                });
-        });
-    </script>
+
 </body>
 
 </html>
