@@ -1,57 +1,140 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Gráficos</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body{
+    body {
       display: flex;
       flex-direction: column;
       max-width: 100%;
-      width: 95%;
-      justify-content: center;
-      align-content: center;
-    }
-    .quadrado{
-      overflow-y: scroll;
-      max-width: 100%;
       width: 100%;
-      height: 33rem;
 
     }
+
+    .cabeçalho {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      max-width: 100%;
+      width: 100%;
+      text-align: justify;
+
+    }
+
+
+    button {
+      max-width: 100%;
+      width: 90%;
+      height: 30px;
+      font-size: 12.4px;
+      margin: 5px;
+      font-weight: 700;
+      outline: none;
+      border:none;
+      
+      border-radius: 5px;
+      cursor: pointer;
+      background: #03A4FF;
+      display: flex;
+      justify-content: center;
+      gap:1rem;
+      align-items: center;
+    }
+    
+
+    label {
+      padding: 5px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    select {
+      margin: 3px;
+      padding: 5px;
+      background: #F1F9FC;
+
+      font-weight: 600;
+      
+      width: 57%;
+    }
+
+    .quadrado {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+
+      max-width: 100%;
+      width: 100%;
+      height: 43rem;  }
+
     .chart-container {
       margin-bottom: 20px;
-      max-width: 70%;
+      max-width: 90%;
+      justify-content: center;
+      align-items: center; padding: 5px;
+      margin-left: 2rem;
       width: 100%;
     }
   </style>
+  <link rel="stylesheet" href="styles/grafico.css">
 </head>
+
 <body>
-  <h1>Gráficos por Mês</h1>
-  <div>
-    <button><a href="mapa.html">Voltar para o Mapa</a></button>
+  <div class="divisor">
+    <div class="qd1">
+      <div class="cabeçalho">
+        <div class="divImagem"><img  class="logo" src="logo.svg" alt=""></div>
+        <div class="textoInicial">
+          <h1>Gráficos Dinâminos</h1>
+          <p>Faça sua análise de maneira rapida e eficaz</p>
+        </div>
+      </div>
+      <div class="selecionador">
+        <label for="monthSelect">Selecione o mês:</label>
+        <select id="monthSelect">
+          <option value="">Todos os meses</option>
+          <option value="01">Janeiro</option>
+          <option value="02">Fevereiro</option>
+          <option value="03">Março</option>
+          <option value="04">Abril</option>
+          <option value="05">Maio</option>
+          <option value="06">Junho</option>
+          <option value="07">Julho</option>
+          <option value="08">Agosto</option>
+          <option value="09">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
+      <div id="infoRaio" class="info-raio">
+        <div>
+          <label class="informaçoes">Tipo de Raio:</label><span id="tipoRaio"></span><br>
+          <label class="informaçoes">Quantidade:</label><span id="quantidadeRaio"></span>
+        </div>
+        <div>
+          <label class="informaçoes">Tipo de Raio:</label><span id="tipoRaio2"></span><br>
+          <label class="informaçoes">Quantidade:</label><span id="quantidadeRaio2"></span>
+        </div>
+      </div>
+      <div class="divQdr">
+        <button><img src="clarity_map-line.svg" alt=""><a href="mapa.html" style="text-decoration: none;  color:#000000;">Voltar para o Mapa</a></button>
+      </div>
+    </div>
+    <div class="qd2">
+      <div class="quadrado">
+        <div id="chartContainer"></div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <label for="monthSelect">Selecione o mês:</label>
-    <select id="monthSelect">
-      <option value="">Todos os meses</option>
-      <option value="01">Janeiro</option>
-      <option value="02">Fevereiro</option>
-      <option value="03">Março</option>
-      <option value="04">Abril</option>
-      <option value="05">Maio</option>
-      <option value="06">Junho</option>
-      <option value="07">Julho</option>
-      <option value="08">Agosto</option>
-      <option value="09">Setembro</option>
-      <option value="10">Outubro</option>
-      <option value="11">Novembro</option>
-      <option value="12">Dezembro</option>
-    </select>
-  </div>
 
-  <div class="quadrado"><div id="chartContainer"></div></div>
+
+  
 
   <script>
     let chartData = {}; // Variável global para armazenar os dados do gráfico
@@ -109,58 +192,131 @@
       return monthNames[monthNumber - 1];
     }
 
-    // Função para atualizar o gráfico de acordo com o mês selecionado
     function updateChartByMonth(selectedMonth) {
       const chartContainer = document.getElementById('chartContainer');
-
+      const tipoRaio = document.getElementById('tipoRaio'); // Elemento de tipo de raio
+      const tipoRaio2 = document.getElementById('tipoRaio2');
+      const quantidadeRaio = document.getElementById('quantidadeRaio'); // Elemento de quantidade de raio
+      const quantidadeRaio2 = document.getElementById('quantidadeRaio2'); // Elemento de quantidade de raio
+    
       // Limpar o conteúdo anterior do gráfico
       chartContainer.innerHTML = '';
-
+    
       const orderedMonths = Object.keys(chartData).sort((a, b) => parseInt(a) - parseInt(b));
-
-      for (const month of orderedMonths) {
-        // Verificar se o mês selecionado corresponde ao mês atual no loop
-        if (selectedMonth === '' || selectedMonth === month) {
-          const monthName = getMonthName(parseInt(month));
-
-          const types = Object.keys(chartData[month]);
-          const quantities = Object.values(chartData[month]);
-
-          const chartDiv = document.createElement('div');
-          chartDiv.classList.add('chart-container');
-          chartContainer.appendChild(chartDiv);
-
-          const canvas = document.createElement('canvas');
-          chartDiv.appendChild(canvas);
-
-          const descriptionDiv = document.createElement('div');
-          descriptionDiv.innerHTML = getDescription(types, quantities);
-          chartDiv.appendChild(descriptionDiv);
-
-          new Chart(canvas, {
-            type: 'bar',
-            data: {
-              labels: types,
-              datasets: [{
-                label: monthName,
-                data: quantities,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 2 // Reduza o valor para diminuir a largura das barras
-              }]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
+    
+      const colors = generateRandomColors(orderedMonths.length);
+    
+      // Inicializar arrays para dados do gráfico
+      const labels = ['IntraNuvem', 'Nuvem-Solo'];
+      const datasets = [];
+    
+      // Adicione um bloco para calcular as quantidades totais quando "Todos os meses" for selecionado
+      let totalIntraNuvem = 0;
+      let totalNuvemSolo = 0;
+      if (selectedMonth === '') {
+        for (const month of orderedMonths) {
+          Object.keys(chartData[month]).forEach(type => {
+            const quantity = chartData[month][type];
+            if (type === '1') {
+              totalIntraNuvem += quantity;
+            } else if (type === '0' || type === '40') {
+              totalNuvemSolo += quantity;
             }
           });
         }
       }
+    
+      for (const [index, month] of orderedMonths.entries()) {
+        // Verificar se o mês selecionado corresponde ao mês atual no loop ou se é "todos os meses"
+        if (selectedMonth === '' || selectedMonth === month) {
+          const monthName = getMonthName(parseInt(month));
+    
+          // Inicializar contadores para os tipos de raio
+          let intranuvemCount = 0;
+          let nuvemSoloCount = 0;
+    
+          // Iterar pelos tipos e quantidades e agrupar os valores para IntraNuvem e Nuvem-Solo
+          Object.keys(chartData[month]).forEach(type => {
+            const quantity = chartData[month][type];
+            if (type === '1') {
+              intranuvemCount += quantity;
+            } else if (type === '0' || type === '40') {
+              nuvemSoloCount += quantity;
+            }
+          });
+    
+          // Adicionar dataset para o mês atual com a sua cor correspondente
+          datasets.push({
+            label: monthName,
+            data: [intranuvemCount, nuvemSoloCount],
+            backgroundColor: colors[index],
+            borderColor: colors[index],
+            borderWidth: 3
+          });
+    
+          // Atualizar o conteúdo da div 'infoRaio'
+          if (selectedMonth === '') {
+            tipoRaio.textContent = 'IntraNuvem (Total)';
+            quantidadeRaio.textContent = totalIntraNuvem;
+            tipoRaio2.textContent = 'Nuvem-Solo (Total)';
+            quantidadeRaio2.textContent = totalNuvemSolo;
+          } else {
+            tipoRaio.textContent = 'IntraNuvem'; // Você pode personalizar isso com base no tipo de raio atual
+            quantidadeRaio.textContent = intranuvemCount; // Você pode personalizar isso com base na quantidade atual
+    
+            tipoRaio2.textContent = 'Nuvem-Solo'; // Você pode personalizar isso com base no tipo de raio atual
+            quantidadeRaio2.textContent = nuvemSoloCount; // Você pode personalizar isso com base na quantidade atual
+          }
+        }
+      }
+    
+      // Criar o gráfico empilhado
+      const chartDiv = document.createElement('div');
+      chartDiv.classList.add('chart-container');
+      chartContainer.appendChild(chartDiv);
+    
+      const canvas = document.createElement('canvas');
+      chartDiv.appendChild(canvas);
+    
+      new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              stacked: true // Empilhar as barras no eixo x
+            },
+            y: {
+              stacked: true // Empilhar as barras no eixo y
+            }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            }
+          },
+          // Ajuste a largura das barras aqui
+          barThickness: 137, // Ajuste esse valor para definir a largura das barras
+        }
+      });
     }
+    
+    // Função para gerar cores aleatórias
+    function generateRandomColors(count) {
+      const colors = [];
+      for (let i = 0; i < count; i++) {
+        const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.5)`;
+        colors.push(color);
+      }
+      return colors;
+    }
+
+    // Restante do seu código permanece o mesmo
 
     // Adicione um evento de mudança no seletor de meses
     document.getElementById('monthSelect').addEventListener('change', function () {
@@ -173,4 +329,5 @@
     };
   </script>
 </body>
+
 </html>

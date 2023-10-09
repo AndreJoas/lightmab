@@ -19,78 +19,134 @@
 </head>
 
 <body>
-    <div class="mapa">
-        <h2>Mapa abaixo</h2>
-        <div id="map"></div>
+ 
+    <div class="divisor">
+        <div class="menu-button">
+            <button id="toggleMenu" onclick="toggleQd1()">Menu</button>
+        </div>
+    
+        <div class="qd1">
+            <div class="cabeçalho">
+                <div class="divImagem"><img class="logo" src="logoPaginaMapa.svg" alt=""></div>
+                <div class="textoInicial">
+                    <h1>Gráficos Dinâminos</h1>
+                    <p>Faça sua análise de maneira rapida e eficaz</p>
+                </div>
+            </div>
+            <div class="porQuantidade">
+                <label for="" class="subtitulos">Qual a quantidade:</label>
+                <input type="number" id="quantity" name="quantity" placeholder="" min="1">
+            </div>
+            <div class="retanguloFiltro">
+                <div class="mesTipo">
+                    <div class="mes">
+                        <label for="" class="subtitulos">Selecione o mês:</label>
+                        <select name="month" id="month">
+                            <option value=""></option>
+                            <option value="all">Todos os meses</option>
+                            <option value="01">Janeiro</option>
+                            <option value="02">Fevereiro</option>
+                            <option value="03">Março</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Maio</option>
+                            <option value="06">Junho</option>
+                            <option value="07">julho</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                            <!-- Adicione os demais meses aqui -->
+                        </select>
+                    </div>
+                </div>
+                <div class="tipo">
+                    <label for="" class="subtitulos">Selecione o tipo do raio:</label>
+                    <select name="type" id="type">
+                        <option value=""></option>
+                        <option value="1">Intranuvem</option>
+                        <option value="0">Nuvem-Solo</option>
+                        <!-- Adicione os demais tipos aqui -->
+                    </select>
+                </div>
+
+                <div class="porData">
+                    <div class="inicial">
+                        <label for="startDate">Data e hora inicial:</label>
+                        <input type="datetime-local" id="startDate" name="startDate">
+                    </div>
+                    <div class="final">
+                        <label for="endDate">Data e hora final:</label>
+                        <input type="datetime-local" id="endDate" name="endDate">
+                    </div>
+                </div>
+            </div>
+            <div class="inserir">
+                <label for="" class="subtitulos">Upload de arquivo:</label>
+                <form action="/api/upload" method="post" enctype="multipart/form-data" class="inserir2">
+                    <input type="file" name="jsonFile" class="bt3">
+                    <input type="submit" value="Enviar Arquivo JSON" class="bt4">
+                    <img class="enviar" src="enviar.svg" alt="" style="position: absolute;">
+                </form>
+            </div>
+            <div class="naTela">
+                <p id="resultCount"></p> <!--quantidade de pontos  -->
+                <p id="maxCount"></p> <!--  quantidade maxima de pontos-->
+            </div>
+            <div class="botoes">
+                <div class="bt1">
+                    <button id="btnFilter">Filtrar</button>
+                </div>
+                <div class="bt1">
+                    <button id="btnReset">Limpar Filtros</button>
+                </div>
+            </div>
+
+            <div class="divQdr">
+                <button id="btnCharts"><img src="grafico.svg">Ver Gráficos</></button>
+            </div>
+        </div>
+        <div class="qd2">
+            <div class="mapa">
+                <div id="map"></div>
+            </div>
+        </div>
+        
     </div>
 
-    <div class="retanguloFiltro">
-        <div class="mesTipo">
-            <div class="mes">
-                <select name="month" id="month">
-                    <option value="">Selecione o mês</option>
-                    <option value="all">Todos os meses</option>
-                    <option value="01">Janeiro</option>
-                    <option value="02">Fevereiro</option>
-                    <option value="03">Março</option>
-                    <option value="04">Abril</option>
-                    <option value="05">Maio</option>
-                    <option value="06">Junho</option>
-                    <option value="07">julho</option>
-                    <option value="08">Agosto</option>
-                    <option value="09">Setembro</option>
-                    <option value="10">Outubro</option>
-                    <option value="11">Novembro</option>
-                    <option value="12">Dezembro</option>
-                    <!-- Adicione os demais meses aqui -->
-                </select>
-            </div>
-            <div class="tipo">
-                <select name="type" id="type">
-                    <option value="">Selecione o tipo de raio</option>
-                    <option value="1">Intranuvem</option>
-                    <option value="0">Nuvem-Solo</option>
-                    <option value="40">Nuvem-</option>
-                    <!-- Adicione os demais tipos aqui -->
-                </select>
-            </div>
-        </div>
-        <div class="porQuantidade">
-            <input type="number" id="quantity" name="quantity" placeholder="Digite a quantidade" min="1">
-            <div class="naTela">
-                <p id="resultCount"></p>
-                <p id="maxCount"></p>
-            </div>
-        </div>
-        <div class="porData">
-            <div class="inicial">
-                <label for="startDate">Data e hora inicial:</label>
-                <input type="datetime-local" id="startDate" name="startDate">
-            </div>
-            <div class="final">
-                <label for="endDate">Data e hora final:</label>
-                <input type="datetime-local" id="endDate" name="endDate">
-                <button id="aviso">ATENÇÃO</button>
-            </div>
-        </div>
-    </div>
-    <div class="botoes">
-        <div class="bt1">
-            <button id="btnFilter">Filtrar</button>
-        </div>
-        <div class="bt1">
-            <button id="btnReset">Limpar Filtros</button>
-        </div>
-        <div>
-            <button id="btnCharts">Ver Gráficos</button>
-        </div>
-    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // Função para alternar a visibilidade de qd1 em telas menores
+        function toggleQd1() {
+            const qd1 = document.querySelector('.qd1');
+            qd1.classList.toggle('hide-qd1');
+        }
     
-    <form action="/api/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="jsonFile">
-        <input type="submit" value="Enviar Arquivo JSON">
-      </form>
-    </div>
+        // Verificar o tamanho da tela quando a página carregar e redimensionar
+        window.addEventListener('load', function() {
+            checkScreenSize();
+        });
+        window.addEventListener('resize', function() {
+            checkScreenSize();
+        });
+    
+        // Função para verificar e aplicar a classe para ocultar qd1 em telas menores
+        function checkScreenSize() {
+            const qd1 = document.querySelector('.qd1');
+            const menuButton = document.querySelector('.menu-button');
+    
+            if (window.innerWidth <= 1000) {
+                qd1.classList.add('hide-qd1');
+                menuButton.style.display = 'block'; // Mostrar o botão
+            } else {
+                qd1.classList.remove('hide-qd1');
+                menuButton.style.display = 'none'; // Ocultar o botão
+            }
+        }
+    </script>
+    
+    
 
     <!-- JavaScript do Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -100,7 +156,7 @@
     <!-- JavaScript do Leaflet.markercluster -->
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
-    
+
     <script>
         // Adicione esta parte de código para lidar com o upload do arquivo JSON
         document.getElementById('uploadButton').addEventListener('click', function () {
@@ -117,19 +173,19 @@
                     method: 'POST',
                     body: formData
                 })
-                .then(function (response) {
-                    if (!response.ok) {
-                        throw new Error('Erro ao enviar o arquivo JSON');
-                    }
-                    return response.json();
-                })
-                .then(function (result) {
-                    // O arquivo JSON foi enviado com sucesso, você pode tratar a resposta aqui
-                    console.log('Arquivo JSON enviado com sucesso:', result);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error('Erro ao enviar o arquivo JSON');
+                        }
+                        return response.json();
+                    })
+                    .then(function (result) {
+                        // O arquivo JSON foi enviado com sucesso, você pode tratar a resposta aqui
+                        console.log('Arquivo JSON enviado com sucesso:', result);
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
             }
         });
     </script>
@@ -139,21 +195,8 @@
             window.location.href = 'graficos.html';
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var startDateInput = document.getElementById('aviso');
-            var endDateInput = document.getElementById('aviso');
 
-            startDateInput.addEventListener('click', showTimezoneInfo);
-            endDateInput.addEventListener('click', showTimezoneInfo);
-        });
 
-        function showTimezoneInfo() {
-            var timezoneMessage = "Atenção! " +
-                " Para considerar o fuso horário correto dos dados, subtraia 3 horas a menos da hora que você informou!!" +
-                " exemplo: " + " se voçê informou:" + " 01/01/2023 05:48 a 01/01/2023 5:50, " + " voçê estará filtrando em: " + "01/01/2023 02:48 a 01/01/2023 2:50, " + " no horario de brasília";
-
-            alert(timezoneMessage);
-        }
 
         function getMonthFromTimeUTC(timeUTC) {
             // Converter a data UTC para um objeto Date
@@ -255,11 +298,6 @@
                         return false;
                     }
 
-                    // Filtro pelo tipo
-                    if (selectedType !== '' && point.type !== selectedType) {
-                        return false;
-                    }
-
                     // Filtro pela data
                     if (startDate !== '' && endDate !== '') {
                         var pointDate = new Date(point.time_utc).getTime();
@@ -270,6 +308,14 @@
                         if (pointDate < startDateTimestamp || pointDate > endDateTimestamp) {
                             return false;
                         }
+                    }
+
+                    // Filtro pelo tipo
+                    if (selectedType === '0' || selectedType === '40') {
+                        // Verificar se o ponto é do tipo "0" ou "40"
+                        return point.type === '0' || point.type === '40';
+                    } else if (selectedType !== '' && point.type !== selectedType) {
+                        return false;
                     }
 
                     return true;
@@ -289,12 +335,13 @@
                 // Adicionar o agrupamento de marcadores ao mapa
                 map.addLayer(markersCluster);
 
-                  // Criar a camada de mapa de calor com base nos pontos filtrados
-            heatLayer = L.heatLayer(heatPoints, { radius: 25, willReadFrequently: true }).addTo(map);
+                // Criar a camada de mapa de calor com base nos pontos filtrados
+                heatLayer = L.heatLayer(heatPoints, { radius: 25, willReadFrequently: true }).addTo(map);
 
-            // Atualizar a contagem de pontos retornados
-            document.getElementById('resultCount').textContent = 'Quantidade de pontos retornados: ' + filteredPoints.length;
+                // Atualizar a contagem de pontos retornados
+                document.getElementById('resultCount').textContent = 'Quantidade de pontos retornados: ' + filteredPoints.length;
             }
+
 
             // Limpar os filtros e mostrar todos os marcadores quando o botão "Limpar Filtros" for clicado
             document.getElementById('btnReset').addEventListener('click', function () {
@@ -336,6 +383,9 @@
         fetchPointsAndInitMap();
 
     </script>
+
+
+
 </body>
 
 </html>
