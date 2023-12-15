@@ -141,3 +141,37 @@ p{
 }
 
 
+@media screen and (max-width: 1000px) {
+    .divisor {
+        max-width: 100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .qd1 {
+        max-width: 100%;
+        width: 90%;
+        height: 52rem;   
+    }
+    .qd2 {
+        margin-top: -40rem;
+        max-width: 100%;
+        width: 90%;
+    }
+    .divQdr{
+        margin-top: 28.7rem;
+    }
+    .language-buttons{
+        width: 40%;
+        margin-top: -3.7rem;
+        margin-left: 32rem;
+        position: absolute;
+        
+    }
+    .textoInicial{
+        margin-left: 1.7rem;
+    }
+    p{
+        margin-left: 1rem;
+    }
+}

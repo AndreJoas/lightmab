@@ -11,6 +11,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: 'Roboto', sans-serif;
 
 }
@@ -42,7 +44,6 @@ body {
     max-width: 73%;
     width: 100%;
     height: 44.2rem;
-
 }
 
 .divImagem{
@@ -423,36 +424,50 @@ h2 {
 
 /* Estilos para mostrar o botão em telas menores */
 @media screen and (max-width: 1000px) {
+    .divisor {
+        max-width: 100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
     .menu-button {
         position: absolute;
         text-align: center;
-        margin-left: 56rem;
+        margin-left: 50rem;
         z-index: 4;
     }
-
+    .qd1 {
+        max-width: 100%;
+        width: 90%;
+        height: 40rem;
+    }
     .qd1 {
         z-index: 1;
         max-height: 0;
     }
 
-    .qd1.hide-qd1 {
+    .hide-qd1 {
         max-height: 1000px;
     }
-
-    .divisor {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .qd1 {
-        max-width: 100%;
-        width: 99%;
-    }
     .qd2 {
+    
         z-index: 1;
         max-width: 100%;
-        width: 99%;
+        width: 90%;
+    }
+    .language-buttons{
+        width: 40%;
+        margin-top: -2.7rem;
+        margin-left: 25rem;
+        position: absolute;
+        
+    }
+    .textoInicial{
+        margin-left: 1.7rem;
+    }
+    p{
+        margin-left: 1rem;
     }
 }
-
-
