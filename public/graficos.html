@@ -55,9 +55,7 @@
       margin: 3px;
       padding: 5px;
       background: #F1F9FC;
-
       font-weight: 600;
-
       width: 57%;
     }
 
@@ -66,7 +64,6 @@
       flex-direction: column;
       justify-content: center;
       align-content: center;
-
       max-width: 100%;
       width: 100%;
       height: 43rem;
@@ -238,7 +235,6 @@
           });
         }
       }
-
       for (const [index, month] of orderedMonths.entries()) {
         // Verificar se o mês selecionado corresponde ao mês atual no loop ou se é "todos os meses"
         if (selectedMonth === '' || selectedMonth === month) {
@@ -257,7 +253,6 @@
               nuvemSoloCount += quantity;
             }
           });
-
           // Adicionar dataset para o mês atual com a sua cor correspondente
           datasets.push({
             label: monthName,
@@ -266,7 +261,6 @@
             borderColor: colors[index],
             borderWidth: 3
           });
-
           // Atualizar o conteúdo da div 'infoRaio'
           if (selectedMonth === '') {
             tipoRaio.textContent = 'IntraNuvem (Total)';
@@ -276,13 +270,11 @@
           } else {
             tipoRaio.textContent = 'IntraNuvem'; // Você pode personalizar isso com base no tipo de raio atual
             quantidadeRaio.textContent = intranuvemCount; // Você pode personalizar isso com base na quantidade atual
-
             tipoRaio2.textContent = 'Nuvem-Solo'; // Você pode personalizar isso com base no tipo de raio atual
             quantidadeRaio2.textContent = nuvemSoloCount; // Você pode personalizar isso com base na quantidade atual
           }
         }
       }
-
       // Criar o gráfico empilhado
       const chartDiv = document.createElement('div');
       chartDiv.classList.add('chart-container');
@@ -318,7 +310,6 @@
         }
       });
     }
-
     // Função para gerar cores aleatórias
     function generateRandomColors(count) {
       const colors = [];
