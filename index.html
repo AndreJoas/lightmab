@@ -84,7 +84,7 @@
         .tempo{
             
             margin-left: 80%;
-            margin-top: 50r;
+            margin-top: 2rem;
             width: 10%;
             display: flex;
             flex-direction: column;
@@ -113,6 +113,55 @@
             background: rgb(233, 228, 228);
             font-weight: 700;
         }
+
+        @media screen and (max-width: 900px) {
+            #retangulo{
+                margin-top:20rem;
+                max-width: 100%;
+
+                width: 73%;
+            }
+            #tempestade,#limpo{
+                width: 100%;
+              
+            }
+            .tempo{
+                margin-left: 90%;
+                width: 12%;
+                height: 20px;
+            }
+        }
+        @media screen and (max-width: 740px) {
+            #retangulo{
+             
+                max-width: 100%;
+                width: 68%;
+            }
+            #tempestade,#limpo{
+                width: 100%;
+              
+            }
+            .tempo{
+                margin-left: 85%;
+                width: 15%;
+                height: 70px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            #retangulo{
+                max-width: 100%;
+                width: 70%;
+            }
+            .tempo{
+                margin-left: 85%;
+                width: 15%;
+                height: 70px;
+            }
+            #tempestade,#limpo{
+                width: 100%;
+              
+            }
+        }
     </style>
 </head>
 
@@ -130,7 +179,7 @@
 
 
         <div class="retBotao">
-            <button id="botao"><a href="">Ver mapa</a></button>
+            <button id="botao"><a href="/public/mapa.html">Ver mapa</a></button>
         </div>
 
 
