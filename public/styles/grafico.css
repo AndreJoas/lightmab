@@ -159,6 +159,7 @@ p{
         width: 90%;
     }
     .divQdr{
+        position:relative;
         margin-top: 28.7rem;
     }
     .language-buttons{
