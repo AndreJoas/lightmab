@@ -179,7 +179,7 @@
 
 
         <div class="retBotao">
-            <button id="botao"><a href="/public/mapa.html">Ver mapa</a></button>
+            <button id="botao"><a href="./public/mapa.html">Ver mapa</a></button>
         </div>
 
 
@@ -191,6 +191,14 @@
        
 </body>
 
+
+<script>
+       var heatLayer;
+        document.getElementById('botao').addEventListener('click', function () {
+            window.location.href = './public/mapa.html';
+        });
+
+</script>
 <script>
     var corpo = document.body;
     var corpo2 = document.getElementById("retangulo");
